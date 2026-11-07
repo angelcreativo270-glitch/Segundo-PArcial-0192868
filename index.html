@@ -1,139 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music World</title>
-    
-    <style>
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Musica — Music Discovery</title><style>
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #121212;
-            color: white;
-        }
+:root{--cream:#f7f4df;--yellow:#f0dc68;--black:#080808;--muted:#a89d58}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#e9e9e9;color:var(--black);font-family:Arial,Helvetica,sans-serif}button,input{font:inherit}.state,.heart-input{position:absolute;opacity:0;pointer-events:none}.app{max-width:1440px;margin:30px auto 24px;display:grid;grid-template-columns:minmax(0,7fr) minmax(300px,2.9fr);background:var(--cream);box-shadow:0 5px 25px #0002;position:relative;padding-bottom:62px;min-height:720px}.main{padding:22px 22px 30px;min-width:0}.sidebar{background:var(--yellow);padding:18px 30px}.topbar{display:flex;align-items:center;gap:22px;margin-bottom:14px}.logo{font-family:'Courier New',monospace;text-decoration:none;color:#111;font-size:25px;line-height:.91;letter-spacing:2px;width:55px;flex-shrink:0}.logo span,.loader-brand span{color:#dbba00}.search{height:50px;background:white;display:flex;align-items:center;flex:1;padding:0 20px}.search input{border:0;outline:0;width:100%;font-size:13px;background:transparent}.magnify{width:19px;height:19px;border:2px solid black;border-radius:50%;position:relative;flex-shrink:0}.magnify:after{content:'';position:absolute;width:9px;height:2px;background:black;transform:rotate(48deg);right:-7px;bottom:-3px}.menu-button{width:44px;height:49px;background:black;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;flex-shrink:0}.menu-button span{height:2px;width:26px;background:white}.hero{background:#efda65;height:231px;display:flex;position:relative;overflow:hidden}.hero-copy{z-index:2;padding:52px 0 0 28px;width:51%;flex-shrink:0}.tags{display:flex;gap:18px}.tags span{background:#f7e68b;padding:8px 9px;font-size:12px;font-weight:bold}.hero h1{font-size:15px;margin:14px 0 6px;white-space:nowrap}.hero p{font-size:12px;color:#b9aa5e;margin:0 0 26px}.hero-actions{display:flex;gap:36px;align-items:center}.play-big{width:192px;height:35px;background:#070707;color:var(--yellow);display:flex;align-items:center;justify-content:space-around;text-decoration:none;font-size:20px;font-weight:800}.play-big b{font-size:20px}.heart{display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:28px;width:36px;height:35px;border:2px solid #111;color:#111;transition:transform .2s,color .2s}.heart:hover{transform:scale(1.18)}.heart-input:checked+.heart{color:#e65a70}.hero-photo{height:100%;width:29%;object-fit:cover;object-position:center}.hero-next{background:#f5e59b;width:20%;min-width:115px;overflow:hidden;position:relative;padding:8px 12px}.hero-next strong{font-size:25px}.hero-next small{font-size:12px;font-weight:400}.progress{height:5px;background:#fff;margin:8px 0}.progress span{display:block;width:50%;height:100%;background:#000}.hero-next img{height:190px;width:130%;object-fit:cover;object-position:center}.section-heading{display:flex;align-items:center;justify-content:space-between}.weekly h2,.artists h2{font-size:18px;margin:24px 0 13px}.add-link{cursor:pointer;font-size:12px;font-weight:bold}.track-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:13px;background:white;padding:12px 14px;align-items:end}.track{text-align:center;min-width:0}.cover{position:relative;overflow:hidden;height:105px}.cover img{width:100%;height:100%;object-fit:cover;transition:transform .4s,filter .4s}.cover:hover img,.artist-grid a:hover img{transform:scale(1.1);filter:saturate(1.25)}.play{position:absolute;bottom:14px;right:9px;width:40px;height:42px;background:white;display:grid;place-items:center;color:#000;text-decoration:none;font-size:19px;transition:background .2s}.play:hover{background:var(--yellow)}.track b{display:block;font-size:12px;margin-top:7px}.track small{font-size:10px;color:#aaa}.track.featured{background:#070707;color:#fff;margin:-35px -4px -12px;padding:12px 10px 10px;z-index:2;text-align:left}.featured .cover{height:127px}.featured .play{background:var(--yellow)}.artists h2{margin-top:20px}.artist-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}.artist-grid a{color:inherit;text-decoration:none;font-size:12px;font-weight:bold;overflow:hidden}.artist-grid img{display:block;width:100%;height:115px;object-fit:cover;transition:transform .35s}.artist-grid span{display:block;padding:6px 0}.side-head{display:flex;align-items:center;justify-content:space-between}.side-head h2{font-size:24px;margin:0 0 27px}.side-head label{font-size:23px;cursor:pointer;margin-top:-22px}.favorites{display:flex;flex-direction:column;gap:22px}.favorite{height:55px;display:flex;align-items:center;border:1px solid #d7c254;transition:transform .2s,background .2s}.favorite:hover{transform:translateX(-3px);background:#f8e680}.favorite>img{width:55px;height:53px;object-fit:cover}.song-info{padding:0 6px;flex:1;min-width:0}.song-info b{display:block;font-size:13px;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.song-info small{display:block;font-size:10px;color:#a99b53;margin-top:2px}.favorite .heart{width:40px;height:100%;border:0;border-left:1px solid #d7c254;font-size:27px;flex-shrink:0}.favorite.selected{background:#101010;color:white}.favorite.selected small{color:#777}.favorite.selected .heart{color:#e8d76e}.new-playlist{display:block;margin:23px 0;text-align:center;padding:12px;border:2px solid #111;cursor:pointer;font-weight:bold;font-size:13px}.new-playlist:hover{background:#111;color:var(--yellow)}.player{height:62px;position:absolute;bottom:0;left:0;right:0;background:#242424;color:#fff;display:flex;align-items:center;gap:30px;padding:5px 20px}.now-playing{width:240px;display:flex;align-items:center;gap:10px;flex-shrink:0}.now-playing img{height:48px;width:48px;object-fit:cover}.now-playing b{font-size:12px;color:#ead568;display:block;font-weight:400}.now-playing small{font-size:10px;color:#aaa}.controls{flex:1;display:flex;align-items:center;gap:13px}.controls>span{font-size:10px}.controls input[type=range]{flex:1}.pause{height:33px;width:33px;border-radius:50%;background:#444;display:grid;place-items:center;cursor:pointer;color:#e5d268;font-size:23px}.play-symbol{display:none}#playing:checked+.pause .pause-symbol{display:none}#playing:checked+.pause .play-symbol{display:block;font-size:16px}.volume{width:25%;display:flex;gap:8px;align-items:center}.volume input{width:100%}input[type=range]{accent-color:#e7d46b;height:4px;cursor:pointer}.drawer{display:none;position:absolute;z-index:8;right:28%;top:90px;width:230px;background:#111;color:#fff;padding:18px;box-shadow:0 10px 30px #0005}.drawer h2{font-size:17px}.drawer a,.drawer label:not(.close-drawer){display:block;color:white;text-decoration:none;padding:12px 5px;cursor:pointer;font-size:13px}.drawer a:hover,.drawer label:hover{color:#edda68}.close-drawer{float:right;cursor:pointer}#menu-toggle:checked~.app .drawer{display:block}.modal-backdrop{display:none;position:fixed;inset:0;background:#0009;z-index:25;align-items:center;justify-content:center;padding:18px}.modal{background:var(--cream);width:min(460px,100%);max-height:90vh;overflow:auto;padding:28px;box-shadow:0 15px 50px #0006}.modal h2{margin:0 0 10px}.modal p{font-size:13px;line-height:1.5}.modal-close{float:right;cursor:pointer;font-size:20px}.field-label{display:block;font-weight:bold;font-size:13px;margin:15px 0 7px}.modal input[type=text],.modal input[name=playlist]{width:100%;padding:12px;border:1px solid #ccc;background:white}.pick-list{max-height:250px;overflow:auto;margin:15px 0}.pick{display:flex;align-items:center;gap:10px;padding:6px;border-bottom:1px solid #ddd;cursor:pointer}.pick img{height:38px;width:38px;object-fit:cover}.pick span{font-size:13px}.pick small{display:block;color:#888}.primary-button{border:0;background:#111;color:#f0dc68;padding:13px 20px;cursor:pointer;font-weight:bold;width:100%;display:block;text-align:center}.note{font-size:11px!important;color:#666}#playlist-toggle:checked~.playlist-modal,#liked-toggle:checked~.liked-modal,#library-toggle:checked~.library-modal{display:flex}.loader{position:fixed;inset:0;background:#f0dc68;z-index:99;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;animation:hide-loader .5s 2.3s forwards;pointer-events:none}.loader-brand{font:700 42px/.85 'Courier New',monospace;letter-spacing:4px}.spinner{width:55px;height:55px;border:6px solid #0002;border-top-color:#111;border-radius:50%;animation:spin .7s linear infinite}.loader p{font-size:13px;letter-spacing:2px}@keyframes spin{to{transform:rotate(360deg)}}@keyframes hide-loader{to{opacity:0;visibility:hidden}}@media(max-width:1000px){.app{grid-template-columns:minmax(0,1fr) 290px;margin:0}.sidebar{padding:18px}.main{padding:18px}.hero-copy{width:55%;padding-left:15px}.hero-photo{width:25%}.track-grid{gap:6px}.cover{height:85px}.featured .cover{height:110px}.artist-grid{gap:12px}.drawer{right:290px}}@media(max-width:760px){.app{display:block;padding-bottom:85px}.main{padding:15px}.sidebar{padding:20px}.hero{height:220px}.hero-copy{width:65%;padding-top:30px}.hero h1{white-space:normal}.hero-photo{width:35%}.hero-next{display:none}.track-grid{grid-template-columns:repeat(3,1fr);gap:12px}.cover{height:120px}.track.featured{margin:0;padding:8px}.artist-grid{grid-template-columns:repeat(2,1fr)}.favorites{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.player{height:85px;gap:10px;flex-wrap:wrap;padding:5px 10px}.now-playing{width:45%}.controls{width:50%;flex:1}.volume{display:none}.drawer{right:10px;top:70px}}@media(max-width:440px){.topbar{gap:10px}.search{padding:0 10px}.search input{font-size:11px}.hero-copy{width:70%}.hero-photo{width:30%}.hero-actions{gap:10px}.play-big{width:130px}.hero h1{font-size:13px}.favorites{grid-template-columns:1fr}.controls>span{display:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.loader{visibility:hidden}}
 
-        header {
-            background-color: #6c2bd9;
-            padding: 25px;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #222;
-            padding: 15px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-        }
-
-        section {
-            padding: 25px;
-        }
-
-        .galeria {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .artista {
-            background-color: #252525;
-            padding: 15px;
-            border-radius: 12px;
-            width: 200px;
-        }
-
-        .artista img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        footer {
-            background-color: #222;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
-</head>
-
-
+</style></head>
 <body>
-
-<header> 
-     <h1>Music House</h1>
-    <p>La musica no se escucha...se siente, se vive y se transmite!! </p>
-</header>
-  
-<nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#artistas">Artistas</a>
-    <a href="#generos">Generos</a>
-</nav>
-
-<section id = "inicio">
-<h2>Bienvenidos a Music House</h2>
-<p>En Music House, nos apasiona la música y queremos compartir esa pasión contigo. Explora nuestra galería de artistas y descubre los géneros que más te gustan.</p>
-</section>
-
-<section id = "generos">
-<h2>Generos Musicales</h2>
-<ul>
-    <li>Pop</li>
-    <li>Rock</li>
-    <li>Regueton</li>
-    <li>Metal</li>
-    <li>Clásica</li>
-    <li>Electrónica</li>
-</section>
-
-<section id = "artistas">
-<h2>Artistas Destacados</h2>
-
-<div class="galeria">
-
-    <div class="artista">
-        <img src="assets/Group 24.png" 
-        alt="Artista musical">
-        <h3>Modern Love</h3>
-        <p>Pop</p>
-    </div>
-
-    <div class="artista">
-        <img src="assets/Group 25.png" 
-        alt="Artista musical">
-        <h3>Ritviz</h3>
-        <p>Regueton</p>
-    </div>
-
-    <div class="artista">
-        <img src="assets/Group 26 (2).png" 
-        alt="Artista musical">
-        <h3>Bryan Tyler</h3>
-        <p>Electrónica</p>  
-    </div>
-
-    <div class="artista">
-        <img src="assets/Group 27.png" 
-        alt="Artista musical">
-        <h3>The Beach Boys</h3>
-        <p>Rock</p>
-    </div>
-  
-</div>
-</section>
-
-<footer>
-    <p>Music House - 2026</p>
-</footer>
-
-
-</body>
-</html>
+<div class="loader" aria-label="Cargando"><div class="loader-brand">Mu<br>si<br>ca<span>.</span></div><div class="spinner"></div><p>Loading your music...</p></div>
+<input type="checkbox" id="menu-toggle" class="state"><input type="checkbox" id="playlist-toggle" class="state"><input type="checkbox" id="liked-toggle" class="state"><input type="checkbox" id="library-toggle" class="state">
+<div class="app"><main class="main">
+<header class="topbar"><a class="logo" href="index.html">Mu<br>si<br>ca<span>.</span></a><div class="search"><input type="search" placeholder="Search among 100.000+ music tracks" aria-label="Buscar canciones"><span class="magnify"></span></div><label for="menu-toggle" class="menu-button" title="Abrir menú"><span></span><span></span><span></span></label></header>
+<nav class="drawer"><label for="menu-toggle" class="close-drawer">✕</label><h2>Discover music</h2><a href="#home">⌂ &nbsp; Home</a><a href="#weekly">♫ &nbsp; Weekly Top Tracks</a><a href="#artists">◉ &nbsp; Recent Artists</a><label for="playlist-toggle">＋ &nbsp; Create playlist</label><label for="library-toggle">▤ &nbsp; My playlists</label><label for="liked-toggle">♥ &nbsp; Favorites</label></nav>
+<section class="hero" id="home"><div class="hero-copy"><div class="tags"><span>#radio</span><span>#house</span></div><h1>Best Progressive House (All - Time)</h1><p>Westcoast Radio (EDM)</p><div class="hero-actions"><a class="play-big" href="#player">PLAY <b>▶</b></a><input class="heart-input" type="checkbox" id="hero-heart"><label class="heart" for="hero-heart" aria-label="Favorito">♥</label></div></div><img class="hero-photo" src="assets/hero-main.png" alt="Artista con audífonos"><div class="hero-next"><strong>01<small>/03</small></strong><div class="progress"><span></span></div><img src="assets/hero-side.png" alt="Artista disfrutando música"></div></section>
+<section class="weekly" id="weekly"><div class="section-heading"><h2>Weekly Top Track</h2><label for="playlist-toggle" class="add-link">＋ Create playlist</label></div><div class="track-grid">
+<article class="track"><div class="cover"><img src="assets/just-hits.png" alt="Just Hits"><a href="#player" class="play">▶</a></div><b>Just Hits</b></article>
+<article class="track"><div class="cover"><img src="assets/just-radio.png" alt="Just Radio"><a href="#player" class="play">▶</a></div><b>Just Radio</b></article>
+<article class="track"><div class="cover"><img src="assets/hit-rewind.png" alt="Hit Rewind"><a href="#player" class="play">▶</a></div><b>Hit Rewind</b></article>
+<article class="track featured"><div class="cover"><img src="assets/bad-habits.png" alt="Bad Habits"><a href="#player" class="play">▶</a></div><b>Bad Habits</b><small>Ed Sheeran</small></article>
+<article class="track"><div class="cover"><img src="assets/maroon5.png" alt="Maroon 5"><a href="#player" class="play">▶</a></div><b>Maroon 5</b></article>
+<article class="track"><div class="cover"><img src="assets/ala.png" alt="A.L.A"><a href="#player" class="play">▶</a></div><b>A.L.A</b></article>
+</div></section>
+<section class="artists" id="artists"><h2>Recent Artist</h2><div class="artist-grid"><a href="#weekly"><img src="assets/artist-dua.png" alt="Artista pop"><span>Dua Lipa</span></a><a href="#weekly"><img src="assets/artist-band.png" alt="Banda musical"><span>Maroon 5</span></a><a href="#weekly"><img src="assets/artist-red.png" alt="Artista con iluminación roja"><span>New releases</span></a><a href="#weekly"><img src="assets/artist-blue.png" alt="Artista con iluminación azul"><span>Trending</span></a></div></section>
+</main><aside class="sidebar"><div class="side-head"><h2>My favorite tracks</h2><label for="liked-toggle" title="Ver favoritos">♥</label></div><div class="favorites">
+<article class="favorite "><img src="assets/blinding-lights.png" alt="Blinding Lights"><div class="song-info"><b>Blinding Lights</b><small>The Weeknd</small></div><input class="heart-input" type="checkbox" id="like-0" ><label class="heart" for="like-0" title="Añadir o quitar favorito">♥</label></article>
+<article class="favorite "><img src="assets/dance-monkey.png" alt="Dance Monkey"><div class="song-info"><b>Dance Monkey</b><small>Tones And I</small></div><input class="heart-input" type="checkbox" id="like-1" ><label class="heart" for="like-1" title="Añadir o quitar favorito">♥</label></article>
+<article class="favorite "><img src="assets/the-box.png" alt="The Box"><div class="song-info"><b>The Box</b><small>Roddy Ricch</small></div><input class="heart-input" type="checkbox" id="like-2" ><label class="heart" for="like-2" title="Añadir o quitar favorito">♥</label></article>
+<article class="favorite selected"><img src="assets/dont-start-now.png" alt="Don’t Start Now"><div class="song-info"><b>Don’t Start Now</b><small>Dua Lipa</small></div><input class="heart-input" type="checkbox" id="like-3" checked><label class="heart" for="like-3" title="Añadir o quitar favorito">♥</label></article>
+<article class="favorite "><img src="assets/watermelon-sugar.png" alt="Watermelon Sugar"><div class="song-info"><b>Watermelon Sugar</b><small>Harry Styles</small></div><input class="heart-input" type="checkbox" id="like-4" ><label class="heart" for="like-4" title="Añadir o quitar favorito">♥</label></article>
+<article class="favorite "><img src="assets/someone-you-loved.png" alt="Someone You Loved"><div class="song-info"><b>Someone You Loved</b><small>Lewis Capaldi</small></div><input class="heart-input" type="checkbox" id="like-5" ><label class="heart" for="like-5" title="Añadir o quitar favorito">♥</label></article>
+<article class="favorite "><img src="assets/circles.png" alt="Circles"><div class="song-info"><b>Circles</b><small>Post Malone</small></div><input class="heart-input" type="checkbox" id="like-6" ><label class="heart" for="like-6" title="Añadir o quitar favorito">♥</label></article>
+</div><label for="playlist-toggle" class="new-playlist">＋ Create new playlist</label></aside>
+<footer class="player" id="player"><div class="now-playing"><img src="assets/dont-start-now.png" alt="Carátula actual"><div><b>Don't Start Now</b><small>Dua Lipa</small></div></div><div class="controls"><input type="checkbox" id="playing" class="state"><label for="playing" class="pause" title="Alternar estado visual de reproducción"><span class="pause-symbol">Ⅱ</span><span class="play-symbol">▶</span></label><span>0:50</span><input type="range" min="0" max="170" value="50" aria-label="Barra de progreso visual"><span>2:30</span></div><div class="volume"><span>♫</span><input type="range" min="0" max="100" value="45" aria-label="Volumen visual"></div></footer></div>
+<div class="modal-backdrop playlist-modal"><div class="modal"><label for="playlist-toggle" class="modal-close">✕</label><h2>Create your playlist</h2><p>Give your collection a name and select your favorite tracks.</p><form action="#library" method="get"><label class="field-label" for="playlist-name">Playlist name</label><input id="playlist-name" name="playlist" placeholder="My new playlist" required maxlength="50"><div class="pick-list"><label class="pick"><input type="checkbox" name="song" value="blinding-lights"><img src="assets/blinding-lights.png" alt=""><span>Blinding Lights<small>The Weeknd</small></span></label><label class="pick"><input type="checkbox" name="song" value="dance-monkey"><img src="assets/dance-monkey.png" alt=""><span>Dance Monkey<small>Tones And I</small></span></label><label class="pick"><input type="checkbox" name="song" value="the-box"><img src="assets/the-box.png" alt=""><span>The Box<small>Roddy Ricch</small></span></label><label class="pick"><input type="checkbox" name="song" value="dont-start-now"><img src="assets/dont-start-now.png" alt=""><span>Don’t Start Now<small>Dua Lipa</small></span></label><label class="pick"><input type="checkbox" name="song" value="watermelon-sugar"><img src="assets/watermelon-sugar.png" alt=""><span>Watermelon Sugar<small>Harry Styles</small></span></label><label class="pick"><input type="checkbox" name="song" value="someone-you-loved"><img src="assets/someone-you-loved.png" alt=""><span>Someone You Loved<small>Lewis Capaldi</small></span></label><label class="pick"><input type="checkbox" name="song" value="circles"><img src="assets/circles.png" alt=""><span>Circles<small>Post Malone</small></span></label></div><button type="submit" class="primary-button">Save playlist</button><p class="note">Sin JavaScript, este formulario no guarda datos de manera permanente.</p></form></div></div>
+<div class="modal-backdrop liked-modal"><div class="modal"><label for="liked-toggle" class="modal-close">✕</label><h2>My favorites ♥</h2><p>Activa o desactiva los corazones de las canciones en la columna derecha. Los cambios se mantienen hasta recargar la página.</p><label for="liked-toggle" class="primary-button as-label">Back to music</label></div></div>
+<div class="modal-backdrop library-modal" id="library"><div class="modal"><label for="library-toggle" class="modal-close">✕</label><h2>My playlists</h2><p>Use <strong>Create playlist</strong> to choose a name and tracks. HTML y CSS no pueden guardar listas permanentemente ni reproducir audio por sí solos.</p><label for="playlist-toggle" class="primary-button as-label">＋ Create playlist</label></div></div>
+</body></html>
